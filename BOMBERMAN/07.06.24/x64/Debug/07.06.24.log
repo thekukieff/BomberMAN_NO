@@ -1,0 +1,4 @@
+﻿  Enemy.cpp
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(107,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(107,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  07.06.24.vcxproj -> C:\Users\k.kukiev\source\repos\BOMBERMAN\x64\Debug\07.06.24.exe
