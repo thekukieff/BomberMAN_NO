@@ -159,6 +159,7 @@ void Hero::Draw_Right_Hero_Stay(RenderWindow& window)//отрисовка, стоит вправо
 
 void Hero::Draw_Hero_Stay(RenderWindow& window)//отрисовка, старт
 {
+    Hero_sprite.setPosition(coords_x, coords_y);
     window.draw(Hero_sprite);
 }
 

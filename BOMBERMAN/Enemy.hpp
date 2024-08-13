@@ -16,8 +16,9 @@ public:
 	int y;
 	int move = 1;
 private:
-	bool first = false;
-	int up_down;
+	bool first_y = false;
+	bool first_x = false;
+	int up_down, left_right;
 	int move_y = 0;
 	bool move_x=true;
 	Image Enemy_image;

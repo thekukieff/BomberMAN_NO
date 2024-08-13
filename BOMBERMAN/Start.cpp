@@ -8,7 +8,7 @@
 void Start()
 {
     srand(time(NULL));
-
+    bool boom = false;
 
     RenderWindow window(VideoMode(1680,1050), "Bomberman!");//запуск окна
 
@@ -16,32 +16,34 @@ void Start()
     Hero hero;
     Bomb bomb;
     Enemy enemy1,enemy2,enemy3,enemy4, enemy5;
+    Clock clock_bomb, clock_game;
+
+    const int MAX_TIME = 300;
+    int timer_bomb = 0;
+    int timer_game = 0;
 
     IndestructibleStone.DrawIndestructibleStone();//вся отрисовка неломающегося камня
     DestroyStone.DrawDestroyStone();//вся отрисовка ломающегося камня
     BG.Background();
     Door.Door(DestroyStone);
     enemy1.DrawEnemyLeft();
-    enemy1.x = rand() % 1500 + 50;
     enemy2.DrawEnemyLeft();
-    enemy2.x = rand() % 1500 + 50;
     enemy3.DrawEnemyLeft();
-    enemy3.x = rand() % 1500 + 50;
     enemy4.DrawEnemyLeft();
-    enemy4.x = rand() % 1500 + 50;
     enemy5.DrawEnemyLeft();
-    enemy5.x = rand() % 1500 + 50;
     //вынести в отдельную функцию
     //разобраться с рандомом
-    std::cout<<std::endl << enemy1.x << " " << enemy2.x << " " << enemy3.x;
 
 
 
     hero.Face_Hero_stay();
 
     while (window.isOpen())//главный цикл программы
+    
     {
-
+        timer_game = clock_game.getElapsedTime().asSeconds();
+        std::cout << timer_game << std::endl;
+        //std::cout << timer_bomb<<std::endl;
         Event event;
         while (window.pollEvent(event))
         {
@@ -50,7 +52,11 @@ void Start()
         }
 
         window.clear();//повтор
-
+        if (!boom)
+        {
+            clock_bomb.restart();
+            timer_bomb -= timer_bomb;
+        }
 
 
         BG.DrawBackground(window);
@@ -65,12 +71,13 @@ void Start()
 
             if (!DestroyStone.Destroy_stone_coords[(hero.coords_x - hero.move) / 50][hero.coords_y / 50])//чтоб не врезаться в стену
             {
-                hero.Draw_Left_Hero_Stay(window);//отрисовка 
-                event.type = Event::KeyReleased;//отпускание клавиши
+                if (!(hero.coords_x == bomb.x+50 && hero.coords_y == bomb.y))
+                {
+
+                    hero.Draw_Left_Hero_Stay(window);//отрисовка 
+                    event.type = Event::KeyReleased;//отпускание клавиши
+                }
             }
-
-
-
 
         }
 
@@ -79,8 +86,12 @@ void Start()
             hero.Right_Hero_stay();
             if (!DestroyStone.Destroy_stone_coords[(hero.coords_x + 50) / 50][hero.coords_y / 50])
             {
-                hero.Draw_Right_Hero_Stay(window);
-                event.type = Event::KeyReleased;
+                if (!(hero.coords_x == bomb.x-50 && hero.coords_y == bomb.y ))
+                {
+                    hero.Draw_Right_Hero_Stay(window);
+                    event.type = Event::KeyReleased;
+                   
+                }
             }
         }
         
@@ -89,8 +100,12 @@ void Start()
             hero.Up_Hero_stay();
             if (!DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y - hero.move) / 50])
             {
+                if (!(hero.coords_x == bomb.x && hero.coords_y == bomb.y + 50))
+                {
+
                 hero.Draw_Up_Hero_Stay(window);
                 event.type = Event::KeyReleased;
+                }
             }
         }
         
@@ -99,12 +114,16 @@ void Start()
             hero.Face_Hero_stay();
             if (!DestroyStone.Destroy_stone_coords[hero.coords_x / 50][(hero.coords_y + 50) / 50])
             {
+                if (!(hero.coords_x == bomb.x&&hero.coords_y==bomb.y-50))
+                {
+
                 hero.Draw_Down_Hero_Stay(window);
                 event.type = Event::KeyReleased;
+                }
             }
         }
         
-        if (Keyboard::isKeyPressed(Keyboard::Escape))
+        if (Keyboard::isKeyPressed(Keyboard::Escape)||timer_game == MAX_TIME)
         {
             window.close();
         }
@@ -116,18 +135,19 @@ void Start()
 
         }//временно
         
-        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::W))
+        if ((event.type == Event::KeyReleased) && (event.key.code == Keyboard::W)&&!bomb.bomb_count)
         {
 
-            bomb.DrawBomb(hero);
-            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords,enemy1);
-            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords, enemy2);
-            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords, enemy3);
-            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords, enemy4);
-            bomb.DestroyBomb(hero.coords_x, hero.coords_y, DestroyStone.Destroy_stone_coords, enemy5);
+            if ((hero.coords_x % 100 == 0 && hero.coords_y % 100 == 0)|| (hero.coords_x % 100 == 50 && hero.coords_y % 100 == 0)||
+                (hero.coords_x % 100 == 0 && hero.coords_y % 100 == 50)||
+                (hero.coords_x % 100 == 50 && hero.coords_y % 100 == 50))//можно ли поставить бомбу
+            {//поставить звук типо нельзя ставить  мину;
+                boom = true;
+                bomb.bomb_count = 1;
 
-            
-            
+
+            bomb.DrawBomb(hero);
+            }
             
             event.type = Event::KeyPressed;
 
@@ -138,9 +158,6 @@ void Start()
         enemy3.DrawWindowEnemy(window, DestroyStone, hero);
         enemy4.DrawWindowEnemy(window, DestroyStone, hero);
         enemy5.DrawWindowEnemy(window, DestroyStone, hero);
-
-        
-        
         
         bomb.DrawWindowBomb(window);
         //sleep(seconds(10));
@@ -154,10 +171,27 @@ void Start()
             }
         }
 
+        if(boom)
+        {
 
+            timer_bomb = clock_bomb.getElapsedTime().asSeconds();
+            if (timer_bomb == 3)//таймер бомбы
+            {
 
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy1, hero);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy2, hero);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy3, hero);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy4, hero);
+                bomb.DestroyBomb(DestroyStone.Destroy_stone_coords, enemy5, hero);
+                bomb.BOOM(timer_bomb, boom,clock_bomb);
 
+                clock_bomb.restart();
+                timer_bomb -= timer_bomb;
+                boom = false;
+                bomb.bomb_count = 0;
+            }
 
+        }
         window.display();//повтор
     }
 

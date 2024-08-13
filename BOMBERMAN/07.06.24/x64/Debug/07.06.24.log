@@ -1,4 +1,25 @@
-﻿  Enemy.cpp
-C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(107,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(107,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+﻿  Bomb.cpp
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Bomb.cpp(12,36): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Bomb.cpp(12,33): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Bomb.cpp(103,36): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Bomb.cpp(103,33): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Enemy.cpp
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(159,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Enemy.cpp(159,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Pole.cpp
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(57,64): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(57,56): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(61,64): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(61,56): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(79,60): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(79,54): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(89,51): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(94,57): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(128,46): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Pole.cpp(128,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Start.cpp
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Start.cpp(10,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Start.cpp(44,59): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\k.kukiev\source\repos\BOMBERMAN\Start.cpp(177,63): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+  Создание кода...
   07.06.24.vcxproj -> C:\Users\k.kukiev\source\repos\BOMBERMAN\x64\Debug\07.06.24.exe
