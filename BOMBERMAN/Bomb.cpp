@@ -48,6 +48,8 @@ void Bomb::DestroyBomb( int Destroy_stone_coords[32][21], Enemy &enemy, Hero &he
 
         if ((x + i == enemy.x && y == enemy.y) ||(x-i==enemy.x && y==enemy.y))
         {
+            enemy.life = false;
+            enemy.move_y = 0;
             enemy.move = 0;
             enemy.x = -100;
             enemy.y = -100;
@@ -58,12 +60,14 @@ void Bomb::DestroyBomb( int Destroy_stone_coords[32][21], Enemy &enemy, Hero &he
                 for (int j = 0; j < 25; j++)
                 {
 
-                if (enemy.x == x - j|| enemy.x == x + j)
+                if (enemy.x == x - j|| enemy.x == x + j)//враг и бомба
                     {
-                    enemy.move = 0;
 
+                    enemy.life = false;
+                    enemy.move_y = 0;
+                    enemy.move = 0;
                     enemy.x = -100;
-                    enemy.y = -100;
+                    enemy.y = -100; 
                     break;
                     }
                 }
@@ -75,10 +79,12 @@ void Bomb::DestroyBomb( int Destroy_stone_coords[32][21], Enemy &enemy, Hero &he
 
                 if (enemy.x == x - j || enemy.x == x + j)
                 {
-                    enemy.move = 0;
 
+                    enemy.life = false;//чтоб не двигался
+                    enemy.move_y = 0;
+                    enemy.move = 0;
                     enemy.x = -100;
-                    enemy.y = -100;
+                    enemy.y = -100; 
                     break;
                 }
             }
@@ -97,7 +103,6 @@ void Bomb::DestroyBomb( int Destroy_stone_coords[32][21], Enemy &enemy, Hero &he
 }
 void Bomb::BOOM(int &timer, bool &boom, Clock &clock) {
        
-        
     x = -200;
     y = -200;
     Bomb_big_sprite.setPosition(x, y);

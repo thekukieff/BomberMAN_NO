@@ -68,6 +68,8 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole&Stone, Hero &hero)
 
         coords_x = 0;
     }
+    if (life)
+    {
 
     if (x%100==0)//движение вверх/вниз
     {
@@ -155,6 +157,7 @@ void Enemy::DrawWindowEnemy(RenderWindow& window, Pole&Stone, Hero &hero)
         
 
 
+    }
     }
         Enemy_sprite.setPosition(x, y);
         window.draw(Enemy_sprite);

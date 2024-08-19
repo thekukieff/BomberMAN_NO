@@ -164,7 +164,7 @@ void Start()
         if (hero.coords_x==Door.door_x*50&&hero.coords_y==Door.door_y*50)
         {
             std::cout << "зашел\n";
-            if (enemy1.x==-100&&enemy2.x==-100&&enemy3.x==-100&&enemy4.x==-100&&enemy5.x==-100)
+            if (!enemy1.life&&!enemy2.life&&!enemy3.life&&!enemy4.life&&!enemy5.life)
             {
                 std::cout << "\nWIN";
                 window.close();
